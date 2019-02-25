@@ -29,7 +29,7 @@ const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange}) => {
       <form onSubmit={sumUsd} className="usd">
       <input type="number" className="inputUsd" value={inputUS} placeholder="Введите сумму USD" onChange={inputChange}/>
       <button className="getUsd">Получить сумму в грн</button>
-      <span className="sym">{`${Number(resultUSD).toFixed()} грн`}</span>
+      <span className="sym">{`${(Number(resultUSD).toLocaleString('en'))} грн`}</span>
       </form>
     </div>P
       </div>
