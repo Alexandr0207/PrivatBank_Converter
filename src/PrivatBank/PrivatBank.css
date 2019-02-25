@@ -83,13 +83,23 @@
 .inputUsd{
   height: 40px;
     font-size: 1.2rem;
+     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='16px' width='85px'><text x='2' y='13' fill='gray' font-size='12' font-family='arial'>$</text></svg>");
+     background-repeat: no-repeat;
+     background-size: 210px;
+     padding-left: 30px;
+     background-position-y: -0.1rem;
 }
 
 .getUsd{
   height: 40px;
+  background-color: #62ab35;
+    color: white;
+    font-weight: 700;
+    border: 1px solid #62ab35;
 }
 
 .sym{
   font-size: 2rem;
     color: white;
+    background: royalblue;
 }
