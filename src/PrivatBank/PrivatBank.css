@@ -1,0 +1,95 @@
+.logo{
+  width: 200px;
+  display: block;
+  margin: auto;
+  height: 10rem;
+  padding-top: 40px;
+}
+
+.color_PB{
+  color: #62ab35;
+  margin-left: 10px;
+}
+
+.title{
+  margin: auto;
+    display: flex;
+    color: white;
+    margin-top: 30px;
+    font-size: 1.3rem;
+    justify-content: center;
+}
+
+.karta{
+  width: 90%;
+  /* transition: 3s; */
+  /* height: 16.9rem; */
+  margin: auto;
+  margin-top: 30px;
+  background: rgb(200, 200, 200);
+}
+
+.trd{
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0;
+  font-weight: 700;
+  background: #62ab35;
+  border-bottom: 1px solid;
+}
+
+.val{
+  margin-left: 10px;
+}
+
+.tr{
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 15px;
+  border-bottom: 1px solid #333333;
+  background-color: white;
+  font-weight: 500;
+}
+
+.title_converter{
+  color: white;
+  font-weight: 500;
+  width: 90%;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.usd{
+  width: 90%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+.inputUsd{
+  height: 40px;
+    font-size: 1.2rem;
+}
+
+.getUsd{
+  height: 40px;
+}
+
+.sym{
+  font-size: 2rem;
+    color: white;
+}
