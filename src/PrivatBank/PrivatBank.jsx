@@ -2,7 +2,7 @@ import React from 'react';
 import privat from '../img/private.jpg';
 import './PrivatBank.css'
 
-const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange}) => {
+const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange, sumUS}) => {
     return (
       <div>
         <div>
@@ -26,10 +26,11 @@ const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange}) => {
         </div>
         <div>
       <p className="title_converter">USD in UAH</p>
-      <form onSubmit={sumUsd} className="usd">
+      <form className="usd">
       <input type="number" className="inputUsd" value={inputUS} placeholder="Введите сумму USD" onChange={inputChange}/>
       <button className="getUsd">Получить сумму в грн</button>
-      <span className="sym">{`${(Number(resultUSD).toLocaleString('en'))} грн`}</span>
+      {/* <input type="number" value={sumUS}/> */}
+      <span className="sym">{`${(Number(sumUS).toFixed(2))} грн`}</span>
       </form>
     </div>P
       </div>

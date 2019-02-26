@@ -9,19 +9,20 @@ class App extends Component {
   state = {
     data: {},
     loading: false,
-    inputUSD: "",
-    sumUSD: '',
+    inputUSD: 0 ,
+    sumUSD: 0,
     convertUSD: '',
   }
 
   componentDidMount(){
     this.getCourse();
+    // this.getConvert();
     this.convertUsd();
   }
 
-  // componentDidUpdate(){
-  //   this.convert();
-  // }
+  componentDidUpdate(){
+    // this.convert();
+  }
 
   getCourse = () => {
     axios.get('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11')
@@ -57,20 +58,35 @@ class App extends Component {
     // e.stopPropagation();
   }
 
-  sumUsd = (b) =>{
-    b.preventDefault();
-    this.setState({
-      sumUSD: this.state.convertUSD * this.state.inputUSD
-    })
+  sumUsd = () =>{
+    // b.preventDefault();
+    // this.setState(prevState => ({
+    //   sumUSD: this.state.convertUSD *  this.state.inputUSD
+    // }));
+    // this.setState({
+    //   sumUSD: this.state.convertUSD * this.state.inputUSD
+    // })
     // return console.log(;
     // console.log(b);
   }
 
-  inputChange = (e) =>{
-    let inputUSD = e.target.value;
+  
+  inputChange = async(e) =>{
+    let getValueInput = e.target.value;
+
+    await this.setState(prevState => ({
+      inputUSD: getValueInput,
+    }));
     this.setState({
-      inputUSD: inputUSD,
+      sumUSD: this.state.convertUSD *  this.state.inputUSD      
     })
+   
+
+   
+    // this.setState({
+    //   inputUSD: inputUSD,
+    // })
+    // this.sumUsd();
   }
 
 
@@ -87,7 +103,16 @@ class App extends Component {
     // console.log(data);
     return (
       <div className="App">
-       <PrivatBank data={data} loading={loading} resultUSD={this.state.sumUSD} inputUS={this.state.inputUS} inputChange={this.inputChange} convertUSD={this.state.convertUSD} sumUsd={this.sumUsd} inputUSD={this.state.sumUSD} />
+       <PrivatBank 
+        data={data} 
+        loading={loading} 
+        resultUSD={this.state.sumUSD} 
+        sumUS={this.state.sumUSD} 
+        inputUS={this.state.inputUS} 
+        inputChange={this.inputChange} 
+        convertUSD={this.state.convertUSD} 
+        sumUsd={this.sumUsd} 
+        inputUSD={this.state.sumUSD} />
       </div>
     );
   }

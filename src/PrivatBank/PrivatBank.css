@@ -94,8 +94,14 @@
   height: 40px;
   background-color: #62ab35;
     color: white;
+    transition: 1s;
     font-weight: 700;
     border: 1px solid #62ab35;
+}
+
+.getUsd:hover{
+  background-color: white;
+  color: #62ab35;
 }
 
 .sym{
