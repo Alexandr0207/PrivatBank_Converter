@@ -40,7 +40,7 @@ class App extends Component {
     axios.get('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11')
     .then(res => {
       this.setState({
-        convertUSD: Number(res.data[0].sale).toFixed(2),
+        convertUSD: Number(res.data[0].buy).toFixed(2),
       })
       // console.log(res);
     })
