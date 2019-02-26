@@ -26,9 +26,9 @@ const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange, sumUS}) => {
         </div>
         <div>
       <p className="title_converter">USD in UAH</p>
-      <form className="usd">
+      <form onSubmit={(e) => e.preventDefault()} className="usd">
       <input type="number" className="inputUsd" value={inputUS} placeholder="Введите сумму USD" onChange={inputChange}/>
-      <button className="getUsd">Получить сумму в грн</button>
+      {/* <button className="getUsd">Получить сумму в грн</button> */}
       {/* <input type="number" value={sumUS}/> */}
       <span className="sym">{`${(Number(sumUS).toFixed(2))} грн`}</span>
       </form>
