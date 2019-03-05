@@ -13,9 +13,13 @@ class App extends Component {
   state = {
     data: {},
     loading: false,
-    inputUSD: 0 ,
+    inputUSD: '',
     sumUSD: 0,
     convertUSD: '',
+    inputUS: '',
+    inputEU: '',
+    convertEuro: '',
+    sumEuro: 0,
   }
 
   componentDidMount(){
@@ -45,6 +49,7 @@ class App extends Component {
     .then(res => {
       this.setState({
         convertUSD: Number(res.data[0].buy).toFixed(2),
+        convertEuro: Number(res.data[1].buy).toFixed(2),
       })
       // console.log(res);
     })
@@ -64,12 +69,14 @@ class App extends Component {
   
   inputChangeUSD = async(e) =>{
     let getValueInput = e.target.value;
-
+    let getValueInputEuro = e.target.value;
     await this.setState(prevState => ({
       inputUSD: getValueInput,
+      inputEU: getValueInputEuro,
     }));
     this.setState({
-      sumUSD: this.state.convertUSD * this.state.inputUSD      
+      sumUSD: this.state.convertUSD * this.state.inputUSD,
+      sumEuro: this.state.convertEuro * this.state.inputEU      
     })
   }
 
@@ -82,8 +89,8 @@ class App extends Component {
   
   
   render() {
-    const {data, loading, convertUSD} = this.state;
-    console.log(convertUSD);
+    const {data, loading, convertUSD, convertEuro} = this.state;
+    console.log(convertEuro);
     // console.log(data);
     return (
       <div className="App">
@@ -99,12 +106,12 @@ class App extends Component {
         <Route exact path="/" render={() => 
         <Usd 
         sumUS={this.state.sumUSD} 
-        inputUS={this.state.inputUS}
+        inputUS={this.state.inputUSD}
         inputChangeUSD={this.inputChangeUSD}  />}/>
         <Route path="/euro" render={() => 
         <Euro
-        sumUS={this.state.sumUSD} 
-        inputUS={this.state.inputUS}
+        sumEuro={this.state.sumEuro} 
+        inputEuro={this.state.inputEU}
         inputChangeUSD={this.inputChangeUSD}/>}/>
       </Switch>
         
