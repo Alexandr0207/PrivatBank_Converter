@@ -1,4 +1,5 @@
 import React from 'react';
+import './Usd.css';
 
 const Usd = ({inputUS, inputChangeUSD, sumUS}) => {
   return (

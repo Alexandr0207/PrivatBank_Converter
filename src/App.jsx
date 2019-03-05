@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import PrivatBank from './PrivatBank/PrivatBank';
 import axios from 'axios';
-import Usd from './PrivatBank/Usd';
+import Usd from './Usd/Usd';
 
 class App extends Component {
 
@@ -47,7 +47,7 @@ class App extends Component {
     })
   }
 
-  convertUsd = (e, convertUSD) => {
+  convertUsd = (convertUSD) => {
     this.getConvert();
     let usd = convertUSD;
     console.log(usd);
@@ -58,19 +58,6 @@ class App extends Component {
     }
     // e.stopPropagation();
   }
-
-  // sumUsd = () =>{
-  //   // b.preventDefault();
-  //   // this.setState(prevState => ({
-  //   //   sumUSD: this.state.convertUSD *  this.state.inputUSD
-  //   // }));
-  //   // this.setState({
-  //   //   sumUSD: this.state.convertUSD * this.state.inputUSD
-  //   // })
-  //   // return console.log(;
-  //   // console.log(b);
-  // }
-
   
   inputChangeUSD = async(e) =>{
     let getValueInput = e.target.value;
