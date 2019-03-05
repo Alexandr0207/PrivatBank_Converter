@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import {Switch, Route} from 'react-router-dom'
 // import logo from './logo.svg';
 import './App.css';
 import PrivatBank from './PrivatBank/PrivatBank';
 import axios from 'axios';
 import Usd from './Usd/Usd';
+import Euro from './Euro/Euro';
+import Menu from './Menu/Menu';
 
 class App extends Component {
 
@@ -91,10 +94,20 @@ class App extends Component {
         convertUSD={this.state.convertUSD} 
         sumUsd={this.sumUsd} 
         inputUSD={this.state.sumUSD} />
+        <Menu/>
+        <Switch>
+        <Route exact path="/" render={() => 
         <Usd 
         sumUS={this.state.sumUSD} 
         inputUS={this.state.inputUS}
-        inputChangeUSD={this.inputChangeUSD}  />
+        inputChangeUSD={this.inputChangeUSD}  />}/>
+        <Route path="/euro" render={() => 
+        <Euro
+        sumUS={this.state.sumUSD} 
+        inputUS={this.state.inputUS}
+        inputChangeUSD={this.inputChangeUSD}/>}/>
+      </Switch>
+        
       </div>
     );
   }

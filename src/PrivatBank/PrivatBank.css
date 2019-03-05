@@ -34,8 +34,8 @@
   width: 100%;
   padding: 0;
   color: white;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: space-around;
   margin-bottom: 0;
@@ -63,14 +63,6 @@
 }
 
 
-.usd{
-  width: 90%;
-    margin: auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 2rem;
-}
 
 
 
