@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import PrivatBank from './PrivatBank/PrivatBank';
 import axios from 'axios';
+import Usd from './PrivatBank/Usd';
 
 class App extends Component {
 
@@ -58,35 +59,28 @@ class App extends Component {
     // e.stopPropagation();
   }
 
-  sumUsd = () =>{
-    // b.preventDefault();
-    // this.setState(prevState => ({
-    //   sumUSD: this.state.convertUSD *  this.state.inputUSD
-    // }));
-    // this.setState({
-    //   sumUSD: this.state.convertUSD * this.state.inputUSD
-    // })
-    // return console.log(;
-    // console.log(b);
-  }
+  // sumUsd = () =>{
+  //   // b.preventDefault();
+  //   // this.setState(prevState => ({
+  //   //   sumUSD: this.state.convertUSD *  this.state.inputUSD
+  //   // }));
+  //   // this.setState({
+  //   //   sumUSD: this.state.convertUSD * this.state.inputUSD
+  //   // })
+  //   // return console.log(;
+  //   // console.log(b);
+  // }
 
   
-  inputChange = async(e) =>{
+  inputChangeUSD = async(e) =>{
     let getValueInput = e.target.value;
 
     await this.setState(prevState => ({
       inputUSD: getValueInput,
     }));
     this.setState({
-      sumUSD: this.state.convertUSD *  this.state.inputUSD      
+      sumUSD: this.state.convertUSD * this.state.inputUSD      
     })
-   
-
-   
-    // this.setState({
-    //   inputUSD: inputUSD,
-    // })
-    // this.sumUsd();
   }
 
 
@@ -107,12 +101,13 @@ class App extends Component {
         data={data} 
         loading={loading} 
         resultUSD={this.state.sumUSD} 
-        sumUS={this.state.sumUSD} 
-        inputUS={this.state.inputUS} 
-        inputChange={this.inputChange} 
         convertUSD={this.state.convertUSD} 
         sumUsd={this.sumUsd} 
         inputUSD={this.state.sumUSD} />
+        <Usd 
+        sumUS={this.state.sumUSD} 
+        inputUS={this.state.inputUS}
+        inputChangeUSD={this.inputChangeUSD}  />
       </div>
     );
   }
