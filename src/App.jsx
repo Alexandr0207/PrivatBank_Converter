@@ -6,6 +6,7 @@ import PrivatBank from './PrivatBank/PrivatBank';
 import axios from 'axios';
 import Usd from './Usd/Usd';
 import Euro from './Euro/Euro';
+import Rur from './Rur/Rur';
 import Menu from './Menu/Menu';
 
 class App extends Component {
@@ -16,14 +17,16 @@ class App extends Component {
     inputUSD: '',
     sumUSD: 0,
     convertUSD: '',
+    convertEuro: '',
+    convertRur: '',
     inputUS: '',
     inputEU: '',
-    convertEuro: '',
+    inputRu: '',
+    sumRur: 0,
     sumEuro: 0,
     usdActive: true,
     euroActive: false,
     rurActive: false,
-  
   }
 
   componentDidMount(){
@@ -37,6 +40,7 @@ class App extends Component {
       this.setState({
         usdActive: true,
         euroActive: false,
+        rurActive: false,
       })
   }
 
@@ -45,8 +49,18 @@ class App extends Component {
     this.setState({
       euroActive: true,
       usdActive: false,
+      rurActive: false,
     })
 }
+
+   rurActive = (e) => {
+     e.preventDefault();
+     this.setState({
+       rurActive: true,
+       euroActive: false,
+       usdActive: false
+     })
+   }
 
 
   componentDidUpdate(){
@@ -71,6 +85,7 @@ class App extends Component {
       this.setState({
         convertUSD: Number(res.data[0].buy).toFixed(2),
         convertEuro: Number(res.data[1].buy).toFixed(2),
+        convertRur: Number(res.data[2].buy).toFixed(2),
       })
       // console.log(res);
     })
@@ -91,13 +106,16 @@ class App extends Component {
   inputChangeUSD = async(e) =>{
     let getValueInput = e.target.value;
     let getValueInputEuro = e.target.value;
+    let getValueInputRur = e.target.value;
     await this.setState(prevState => ({
       inputUSD: getValueInput,
       inputEU: getValueInputEuro,
+      inputRu: getValueInputRur
     }));
     this.setState({
       sumUSD: this.state.convertUSD * this.state.inputUSD,
-      sumEuro: this.state.convertEuro * this.state.inputEU      
+      sumEuro: this.state.convertEuro * this.state.inputEU,
+      sumRur: this.state.convertRur * this.state.inputRu      
     })
   }
 
@@ -110,8 +128,8 @@ class App extends Component {
   
   
   render() {
-    const {data, loading, convertUSD, convertEuro, usdActive,euroActive} = this.state;
-    console.log(convertEuro);
+    const {data, loading, usdActive,euroActive, rurActive} = this.state;
+    // console.log(convertEuro);
     // console.log(data);
     return (
       <div className="App">
@@ -125,6 +143,7 @@ class App extends Component {
         <Menu 
         usdActive={this.usdActive}
         euroActive={this.euroActive}
+        rurActive={this.rurActive}
         />
         { usdActive ?
         <Usd 
@@ -137,6 +156,13 @@ class App extends Component {
         <Euro
         sumEuro={this.state.sumEuro} 
         inputEuro={this.state.inputEU}
+        inputChangeUSD={this.inputChangeUSD}/>
+        : null
+        }
+        { rurActive ?
+        <Rur
+        sumRur={this.state.sumRur} 
+        inputRu={this.state.inputRu}
         inputChangeUSD={this.inputChangeUSD}/>
         : null
         }

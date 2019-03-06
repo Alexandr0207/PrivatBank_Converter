@@ -2,7 +2,7 @@ import React from 'react';
 // import {NavLink} from 'react-router-dom';
 import './Menu.css';
 
-const Menu = ({usdActive,euroActive}) => {
+const Menu = ({usdActive,euroActive, rurActive}) => {
   return (
     <div>
     <ul className="lister">
@@ -12,7 +12,7 @@ const Menu = ({usdActive,euroActive}) => {
     <li className="list" onClick={euroActive}>
        EURO
     </li>
-    <li className="list">
+    <li className="list" onClick={rurActive}>
        RUR
     </li>
     <li className="list">
