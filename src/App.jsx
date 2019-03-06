@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom'
+// import {Switch, Route} from 'react-router-dom'
 // import logo from './logo.svg';
 import './App.css';
 import PrivatBank from './PrivatBank/PrivatBank';
@@ -20,6 +20,10 @@ class App extends Component {
     inputEU: '',
     convertEuro: '',
     sumEuro: 0,
+    usdActive: true,
+    euroActive: false,
+    rurActive: false,
+  
   }
 
   componentDidMount(){
@@ -27,6 +31,23 @@ class App extends Component {
     // this.getConvert();
     this.convertUsd();
   }
+
+  usdActive = (e) =>{
+    e.preventDefault()
+      this.setState({
+        usdActive: true,
+        euroActive: false,
+      })
+  }
+
+  euroActive = (e) => {
+    e.preventDefault();
+    this.setState({
+      euroActive: true,
+      usdActive: false,
+    })
+}
+
 
   componentDidUpdate(){
     // this.convert();
@@ -89,7 +110,7 @@ class App extends Component {
   
   
   render() {
-    const {data, loading, convertUSD, convertEuro} = this.state;
+    const {data, loading, convertUSD, convertEuro, usdActive,euroActive} = this.state;
     console.log(convertEuro);
     // console.log(data);
     return (
@@ -101,20 +122,24 @@ class App extends Component {
         convertUSD={this.state.convertUSD} 
         sumUsd={this.sumUsd} 
         inputUSD={this.state.sumUSD} />
-        <Menu/>
-        <Switch>
-        <Route exact path="/" render={() => 
+        <Menu 
+        usdActive={this.usdActive}
+        euroActive={this.euroActive}
+        />
+        { usdActive ?
         <Usd 
         sumUS={this.state.sumUSD} 
         inputUS={this.state.inputUSD}
-        inputChangeUSD={this.inputChangeUSD}  />}/>
-        <Route path="/euro" render={() => 
+        inputChangeUSD={this.inputChangeUSD}  />
+        : null
+        }
+        { euroActive ?
         <Euro
         sumEuro={this.state.sumEuro} 
         inputEuro={this.state.inputEU}
-        inputChangeUSD={this.inputChangeUSD}/>}/>
-      </Switch>
-        
+        inputChangeUSD={this.inputChangeUSD}/>
+        : null
+        }
       </div>
     );
   }

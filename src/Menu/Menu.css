@@ -1,4 +1,4 @@
-.list{ 
+.lister{ 
   display: flex;
   width: 90%;
   justify-content: space-evenly;
@@ -9,31 +9,32 @@
   list-style: none;
 }
 
-.list a {
+.list {
   text-decoration: none;
   color: #fff;
   font-size: 20px;
   font-weight: bold;
   padding: 12px;
   display: block;
-}
-
-a:hover{
-  color: #62ab35;
-}
-
-.btn{
   width: 25%;
   margin: auto;
-  border: 1px solid;
+  border: 1px solid black;
+  border-top: none;
+  cursor: pointer;
   border-left: none;
   text-align: center;
+}
+
+.list::selection{
+  background: transparent;
+  /* color: transparent; */
 }
 
 .btn:nth-child(4n+4){
   border-right: none;
 }
 
-.btn:hover{
+.list:hover{
   background: white;
+  color: #62ab35;
 }
