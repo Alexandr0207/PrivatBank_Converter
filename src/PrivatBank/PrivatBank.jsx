@@ -1,6 +1,7 @@
 import React from 'react';
 import privat from '../img/private.jpg';
-import './PrivatBank.css'
+import './PrivatBank.css';
+import uuid from 'uuidv4';
 
 const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange, sumUS}) => {
     return (
@@ -17,7 +18,7 @@ const PrivatBank = ({data, sumUsd, inputUS, resultUSD, inputChange, sumUS}) => {
            </ul>
            {Array.isArray(data) ?
            data.map(el =>
-           <ul className="tr">
+           <ul className="tr" key={uuid()}>
              <li>{el.ccy}</li>
              <li>{Number(el.buy).toFixed(2)}</li>
              <li>{Number(el.sale).toFixed(2)}</li>

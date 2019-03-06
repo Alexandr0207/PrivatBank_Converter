@@ -2,7 +2,7 @@ import React from 'react';
 // import {NavLink} from 'react-router-dom';
 import './Menu.css';
 
-const Menu = ({usdActive,euroActive, rurActive}) => {
+const Menu = ({usdActive,euroActive, rurActive, btcActive}) => {
   return (
     <div>
     <ul className="lister">
@@ -15,7 +15,7 @@ const Menu = ({usdActive,euroActive, rurActive}) => {
     <li className="list" onClick={rurActive}>
        RUR
     </li>
-    <li className="list">
+    <li className="list" onClick={btcActive}>
        BTC
     </li>
   </ul>

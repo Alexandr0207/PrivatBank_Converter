@@ -7,6 +7,7 @@ import axios from 'axios';
 import Usd from './Usd/Usd';
 import Euro from './Euro/Euro';
 import Rur from './Rur/Rur';
+import Btc from './BTC/Btc';
 import Menu from './Menu/Menu';
 
 class App extends Component {
@@ -19,14 +20,18 @@ class App extends Component {
     convertUSD: '',
     convertEuro: '',
     convertRur: '',
+    convertBtc: '',
     inputUS: '',
     inputEU: '',
     inputRu: '',
+    inputBt: '',
     sumRur: 0,
     sumEuro: 0,
+    sumBtc: 0,
     usdActive: true,
     euroActive: false,
     rurActive: false,
+    btcActive: false,
   }
 
   componentDidMount(){
@@ -41,6 +46,7 @@ class App extends Component {
         usdActive: true,
         euroActive: false,
         rurActive: false,
+        btcActive: false,
       })
   }
 
@@ -50,6 +56,7 @@ class App extends Component {
       euroActive: true,
       usdActive: false,
       rurActive: false,
+      btcActive: false,
     })
 }
 
@@ -58,7 +65,18 @@ class App extends Component {
      this.setState({
        rurActive: true,
        euroActive: false,
-       usdActive: false
+       usdActive: false,
+       btcActive: false
+     })
+   }
+
+   btcActive = (e) => {
+     e.preventDefault();
+     this.setState({
+       btcActive: true,
+       euroActive: false,
+       usdActive: false,
+       rurActive: false
      })
    }
 
@@ -86,6 +104,7 @@ class App extends Component {
         convertUSD: Number(res.data[0].buy).toFixed(2),
         convertEuro: Number(res.data[1].buy).toFixed(2),
         convertRur: Number(res.data[2].buy).toFixed(2),
+        convertBtc: Number(res.data[3].buy).toFixed(2),
       })
       // console.log(res);
     })
@@ -94,7 +113,7 @@ class App extends Component {
   convertUsd = (convertUSD) => {
     this.getConvert();
     let usd = convertUSD;
-    console.log(usd);
+    // console.log(usd);
     if(usd !== undefined){
       console.log(usd);
     } else{
@@ -107,15 +126,18 @@ class App extends Component {
     let getValueInput = e.target.value;
     let getValueInputEuro = e.target.value;
     let getValueInputRur = e.target.value;
+    let getValueInputBtc = e.target.value;
     await this.setState(prevState => ({
       inputUSD: getValueInput,
       inputEU: getValueInputEuro,
-      inputRu: getValueInputRur
+      inputRu: getValueInputRur,
+      inputBt: getValueInputBtc
     }));
     this.setState({
       sumUSD: this.state.convertUSD * this.state.inputUSD,
       sumEuro: this.state.convertEuro * this.state.inputEU,
-      sumRur: this.state.convertRur * this.state.inputRu      
+      sumRur: this.state.convertRur * this.state.inputRu,
+      sumBtc: this.state.convertBtc * this.state.inputBt      
     })
   }
 
@@ -128,7 +150,7 @@ class App extends Component {
   
   
   render() {
-    const {data, loading, usdActive,euroActive, rurActive} = this.state;
+    const {data, loading, usdActive,euroActive, rurActive, btcActive} = this.state;
     // console.log(convertEuro);
     // console.log(data);
     return (
@@ -144,6 +166,7 @@ class App extends Component {
         usdActive={this.usdActive}
         euroActive={this.euroActive}
         rurActive={this.rurActive}
+        btcActive={this.btcActive}
         />
         { usdActive ?
         <Usd 
@@ -163,6 +186,13 @@ class App extends Component {
         <Rur
         sumRur={this.state.sumRur} 
         inputRu={this.state.inputRu}
+        inputChangeUSD={this.inputChangeUSD}/>
+        : null
+        }
+        { btcActive ?
+        <Btc
+        sumBtc={this.state.sumBtc} 
+        inputBt={this.state.inputBt}
         inputChangeUSD={this.inputChangeUSD}/>
         : null
         }
